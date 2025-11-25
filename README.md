@@ -8,10 +8,10 @@ The backend service is built with Node.js, Express, and TypeScript. Its primary 
 
 ## Tech Stack (Backend)
 
-*   **Runtime:** Node.js
-*   **Framework:** Express.js
-*   **Language:** TypeScript
-*   **Package Manager:** npm
+**Runtime:** Node.js
+**Framework:** Express.js
+**Language:** TypeScript
+**Package Manager:** npm
 
 ## Setup Instructions
 
@@ -84,7 +84,13 @@ npm start
 
 These scripts are run from within the `backend/` directory.
 
-*   `npm run dev`: Starts the backend server in development mode.
-*   `npm run build`: Compiles TypeScript to JavaScript for the backend.
-*   `npm start`: Starts the compiled production backend server.
-*   `npm test`: Runs tests (currently no tests configured for the backend).
+* `npm run dev`: Starts the backend server in development mode.
+* `npm run build`: Compiles TypeScript to JavaScript for the backend.
+* `npm start`: Starts the compiled production backend server.
+* `npm test`: Runs tests (currently no tests configured for the backend).
+
+## Deployment
+
+The backend service is deployed on Replit. You can access the live application here:
+
+🔗 [KeyCV](https://replit.com/@trsdeveloper/KeyCV-Infrastructure)
