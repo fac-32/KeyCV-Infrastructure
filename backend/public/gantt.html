@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KeyCV Project Plan Gantt Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.8.0/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .mermaid {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 1200px; /* Adjust as needed */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mermaid">
+gantt
+    title Job Application Tool - 4 Weeks Plan
+    dateFormat  YYYY-MM-DD
+    section Planning
+    Team Formation       :a1, 2025-11-25, 1d
+    MVP Selection        :a2, after a1, 1d
+    Project Setup        :a3, after a2, 2d
+    section Development
+    Frontend Components  :b1, 2025-11-28, 5d
+    Backend Endpoints    :b2, 2025-11-28, 5d
+    Database Setup       :b3, 2025-12-01, 3d
+    section Testing
+    Unit Tests           :c1, 2025-12-05, 3d
+    Integration Tests    :c2, 2025-12-05, 3d
+    E2E Tests            :c3, 2025-12-08, 2d
+    section Finalization
+    Documentation        :d1, 2025-12-10, 3d
+    CI/CD Setup          :d2, 2025-12-11, 2d
+    Deployment           :d3, 2025-12-15, 1d
+    section Stretch
+    Team Integration     :e1, 2025-12-16, 3d
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</body>
+</html>

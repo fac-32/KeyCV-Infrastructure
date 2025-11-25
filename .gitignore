@@ -70,7 +70,6 @@ typings/
 
 # Gatsby files
 .cache/
-public/
 
 # SvelteKit build output
 .svelte-kit/
