@@ -146,5 +146,4 @@ gantt
     Deployment           :d3, 2025-12-15, 1d
     section Stretch
     Team Integration     :e1, 2025-12-16, 3d
-
 ```
