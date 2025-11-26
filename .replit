@@ -1,3 +1,19 @@
-# Force cache invalidation for Replit deployment
-language = "nodejs"
-run = "cd backend && npm install && npm run build && npm start"
+# .replit
+language = "nix"
+
+[nix]
+# The nix channel to use.
+# For a list of available channels, see: https://replit.com/nix/channels
+channel = "stable-23_11"
+# The packages to install.
+# For a list of available packages, see: https://replit.com/nix/search
+pkgs = ["nodejs-20_x"]
+
+[deployment]
+# The command to run your application.
+run = ["npm", "--prefix", "backend", "start"]
+
+# The commands to run before 'run'
+# Replit will automatically run 'npm install' if it finds a 'package.json'
+# We need to explicitly run our build script.
+before = ["npm", "--prefix", "backend", "run", "build"]
