@@ -1,19 +1,34 @@
-# .replit
-language = "nix"
+modules = ["nodejs-24"]
+[agent]
+expertMode = true
 
 [nix]
-# The nix channel to use.
-# For a list of available channels, see: https://replit.com/nix/channels
-channel = "stable-23_11"
-# The packages to install.
-# For a list of available packages, see: https://replit.com/nix/search
-pkgs = ["nodejs-20_x"]
+channel = "stable-25_05"
 
-[deployment]
-# The command to run your application.
-run = ["npm", "--prefix", "backend", "start"]
+[workflows]
+runButton = "Project"
 
-# The commands to run before 'run'
-# Replit will automatically run 'npm install' if it finds a 'package.json'
-# We need to explicitly run our build script.
-before = ["npm", "--prefix", "backend", "run", "build"]
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Backend Server"
+
+[[workflows.workflow]]
+name = "Backend Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd backend && npm run dev"
+waitForPort = 3000
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
