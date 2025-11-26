@@ -18,6 +18,10 @@ app.get('/', (_req: Request, res: Response) => {
   res.send('Hello World!');
 });
 
+app.get('/health', (_req: Request, res: Response) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 app.listen(Number(port), '0.0.0.0', () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
