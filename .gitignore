@@ -85,3 +85,6 @@ build/
 # Output of 'tsc'
 /dist
 /tmp
+
+# Replit specific files
+.replit
