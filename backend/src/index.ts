@@ -1,3 +1,4 @@
+// Force cache invalidation for Replit deployment
 import type { Express, Request, Response } from 'express';
 import express from 'express';
 
