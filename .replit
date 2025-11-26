@@ -6,10 +6,11 @@ expertMode = true
 channel = "stable-25_05"
 
 [workflows]
-runButton = "Project"
+runButton = "Run"
 
+# Main workflow that runs on "Run" button click
 [[workflows.workflow]]
-name = "Project"
+name = "Run"
 mode = "parallel"
 author = "agent"
 
@@ -17,14 +18,48 @@ author = "agent"
 task = "workflow.run"
 args = "Backend Server"
 
+# Workflow to run the production server
 [[workflows.workflow]]
 name = "Backend Server"
 author = "agent"
 
 [[workflows.workflow.tasks]]
+name = "Install Dependencies"
+task = "shell.exec"
+args = "cd backend && npm install"
+
+[[workflows.workflow.tasks]]
+name = "Build Project"
+task = "shell.exec"
+args = "cd backend && npm run build"
+dependsOn = ["Install Dependencies"]
+
+[[workflows.workflow.tasks]]
+name = "Start Production Server"
+task = "shell.exec"
+args = "cd backend && npm start"
+waitForPort = 3000
+dependsOn = ["Build Project"]
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+# Workflow to run the development server
+[[workflows.workflow]]
+name = "Dev"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+name = "Install Dependencies"
+task = "shell.exec"
+args = "cd backend && npm install"
+
+[[workflows.workflow.tasks]]
+name = "Start Dev Server"
 task = "shell.exec"
 args = "cd backend && npm run dev"
 waitForPort = 3000
+dependsOn = ["Install Dependencies"]
 
 [workflows.workflow.metadata]
 outputType = "console"
