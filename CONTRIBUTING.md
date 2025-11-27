@@ -24,6 +24,12 @@ Our branching model is designed to keep our `main` branch stable and our release
 
 5.  **Merge to `main`:** Once approved, the PR can be merged into `main`.
 
+6.  **Delete Your Feature Branch:** After your PR is merged into `main`, you should delete your local and remote feature branch to keep the repository clean.
+    ```bash
+    git branch -d your-feature-name # Delete local branch
+    git push origin --delete your-feature-name # Delete remote branch
+    ```
+
 ## 2. Commit Message Guidelines
 
 We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. This makes our Git history readable and helps automate changelogs in the future. Each commit message should be prefixed:
