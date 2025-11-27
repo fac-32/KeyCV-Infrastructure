@@ -115,6 +115,7 @@ All detailed project documentation has been moved to the `docs/` directory to ke
 - **[Project Guidelines](docs/GUIDELINES.md):** High-level project goals, tech stack, and project management approach.
 - **[Deployment Guide](docs/deployment.md):** Detailed instructions for deploying the backend service on Replit.
 - **[Project Plan Gantt Chart](docs/gantt.html):** A visual representation of our project plan.
+- **[AI Toolkit](docs/AI_Toolkit.md):** Suggestions for leveraging AI to enhance the application's capabilities.
 
 ## Meet the Team
 
