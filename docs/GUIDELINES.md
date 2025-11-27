@@ -88,7 +88,7 @@ Build an additional page or UI component that connects to another teams endpoint
 - [✅] Select focused MVP (e.g., Resume Tailoring Assistant)
 - [✅] Create GitHub Project board with estimation system (1pt = 2hrs)
 - [ ] Set up repositories with TypeScript templates
-- [ ] Deploy "Hello World" to Vercel/Netlify
+- [✅] Deploy "Hello World" to Vercel/Netlify
 - [ ] Configure testing frameworks (Vitest + Playwright)
 - [ ] Write first test for basic deployment
 
