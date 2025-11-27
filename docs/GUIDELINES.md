@@ -82,6 +82,26 @@ Build an additional page or UI component that connects to another teams endpoint
 
 ## 🗺️ Project Roadmap
 
+### 📝 Task Assignments
+
+To ensure clarity and accountability, please assign yourself to a task before starting work.
+
+| Task                                 | Assignee   | Status      | Notes / PR Link |
+|--------------------------------------|------------|-------------|-----------------|
+| Set up repositories Front & Backend  | `[Tania]`  | `[✅]`      |                                                                                       |
+| Deploy "Hello World" to Replit.      | `[Tania]`  | `[✅]`      | I decide to try Replit since never used beforehad lots off issue but we are live now✨|
+| Configure testing frameworks.        | `[Rafi]`   | `[pending]` |                                                                                       |
+| Create GitHub Project.               | `[Mariana]`| `[✅]`      |                                                                                       |
+| GitHub Actions.                      | `[Mariana]`| `[✅]`      |                                                                                       |
+| **Frontend Components**              |            |             |                                                                                       |
+| `JobPostingInput`                    | `[Name]`   | `[pending]` |                                                                                       |
+| `ResumeUpload`                       | `[Name]`   | `[pending]` |                                                                                       |
+| `TailoringResults`                   | `[Name]`   | `[pending]` |                                                                                       |
+| **Backend Endpoints**                |            |             |                                                                                       |
+| `POST /analyze`                      | `[Name]`   | `[pending]` |                                                                                       |
+| `GET /keywords`                      | `[Name]`   | `[pending]` |                                                                                       |
+| Set up Supabase database schema      | `[Kay]`    | `[pending]` |                                                                                       |
+
 ### Week 1: Foundation & Planning
 
 - [✅] Team formation & role assignment
