@@ -98,19 +98,7 @@ These scripts are run from within the `backend/` directory.
 - `npm start`: Starts the compiled production backend server.
 - `npm run test`: Runs tests (currently no tests configured for the backend).
 
-## Contribution Workflow & Branching
-
-All contributions should follow our branching model:
-
-1. **Feature Branches:** Create a new branch from `main` for any new feature or bug fix (e.g., `feature/add-user-auth` or `fix/login-bug`).
-
-2. **Pull Request:** Once your work is complete, open a Pull Request (PR) to merge your feature branch into `main`.
-
-3. **Code Review:** At least one other team member must review and approve the PR.
-
-4. **Merge to `main`:** Once approved, the feature is merged into the `main` branch.
-
-5. **Deployment:** To release the changes, the `main` branch is merged into the `deploy` branch, which is automatically deployed by Replit.
+For contribution guidelines, including our Git branching model and commit message conventions, please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) guide.
 
 ## Deployment
 
