@@ -93,3 +93,6 @@ build/
 
 # Replit specific files
 .replit
+
+# Security audit reports
+snyk-report.json
