@@ -61,4 +61,4 @@ This feature helps users prepare for interviews by generating relevant questions
 
 * **Endpoint Creation:** Each LLM feature will likely require a dedicated backend API endpoint (e.g., `POST /api/analyze-resume`, `POST /api/rewrite-bullet`, `POST /api/generate-cover-letter`).
 * **LLM API Calls:** These endpoints will construct tailored prompts and make calls to your chosen LLM API (e.g., Anthropic Claude, Google Gemini).
-* **Security:** Ensure that the LLM API key is securely managed (e.g., via Replit Secrets in production and `.env.local` for development, **never committed to Git**).
+* **Security:** Ensure that the LLM API key is securely managed (e.g., via Render environment variables in production and `.env.local` for development, **never committed to Git**).

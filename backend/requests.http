@@ -1,0 +1,46 @@
+# Health check
+GET http://localhost:3000/health
+
+###
+# Analyze resume (POST, requires ANTHROPIC_API_KEY)
+POST http://localhost:3000/api/ai/analyze-resume
+Content-Type: application/json
+
+{
+  "resumeText": "Experienced software developer skilled in TypeScript and React.",
+  "jobDescription": "Looking for a TypeScript developer with React experience."
+}
+
+###
+# Rewrite bullet point
+POST http://localhost:3000/api/ai/rewrite-bullet
+Content-Type: application/json
+
+{
+  "bulletPoint": "Implemented a new CI pipeline.",
+  "jobDescription": "We need someone who can improve CI/CD and testing practices."
+}
+
+###
+# Generate cover letter
+POST http://localhost:3000/api/ai/generate-cover-letter
+Content-Type: application/json
+
+{
+  "resumeText": "5 years experience in backend development with Node.js.",
+  "jobDescription": "Backend engineer focusing on Node and cloud services.",
+  "companyName": "Acme Corp",
+  "jobTitle": "Backend Engineer",
+  "keyPoints": ["Improve API performance", "Collaborate with frontend team"]
+}
+
+###
+# Generate interview questions
+POST http://localhost:3000/api/ai/generate-interview-questions
+Content-Type: application/json
+
+{
+  "jobDescription": "We need a full-stack engineer comfortable with Node and React.",
+  "jobTitle": "Full Stack Engineer",
+  "companyName": "Acme Corp"
+}

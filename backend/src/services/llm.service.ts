@@ -12,7 +12,7 @@ import type {
 
 export class LLMService {
   private client: Anthropic;
-  private model = 'claude-3-5-sonnet-20241022';
+  private model = 'claude-sonnet-4-5';
 
   constructor() {
     const apiKey = process.env.ANTHROPIC_API_KEY;

@@ -1,5 +1,3 @@
-// Cache-busting comment to force Replit to update.
-// Force cache invalidation for Replit deployment
 import 'dotenv/config';
 import type { Express, Request, Response } from 'express';
 import express from 'express';

@@ -55,10 +55,7 @@ cp .env.example .env.local
 Then, open `.env.local` and fill in the required environment variables specific to your local setup.
 
 > 🚨 **Warning:** </br>
-> **Ensure this file is never committed to Git, as it contains sensitive information.** (It is already ignored by `.gitignore`).
-
-
-For managing environment variables in the production Replit environment, please refer to the detailed instructions in the [Replit Deployment Guide](docs/deployment.md#21-managing-environment-variables-replit-secrets-vs-local-development).
+> **Ensure this file is never committed to Git, as it contains sensitive information.** (It is already ignored by `.gitignore`). On Render, add these variables via the dashboard.
 
 ### 5. Run the Development Server
 
@@ -102,18 +99,24 @@ For contribution guidelines, including our Git branching model and commit messag
 
 ## Deployment
 
-The backend service is deployed on Replit from the `deploy` branch. For detailed instructions on the deployment process, monitoring, and managing the Replit environment, please see our [Replit Deployment Guide](docs/deployment.md).
+We deploy the backend on Render as a Web Service:
 
-You can access the live application here:
+- **Root Directory:** `backend`
+- **Build Command:** `npm install && npm run build`
+- **Start Command:** `npm start`
+- **Node version:** set `NODE_VERSION` to `20` (or higher) in Render environment variables.
+- **Health Check:** `/health` (Render will automatically use this for service status).
 
-🔗 [KeyCV](https://replit.com/@trsdeveloper/KeyCV-Infrastructure)
+See [Deployment Guide](docs/deployment.md) for step-by-step Render setup details.
+
+You can access the live application after Render finishes provisioning and exposes the service URL.
 
 ## Project Documentation
 
 All detailed project documentation has been moved to the `docs/` directory to keep the root directory clean.
 
 - **[Project Guidelines](docs/GUIDELINES.md):** High-level project goals, tech stack, and project management approach.
-- **[Deployment Guide](docs/deployment.md):** Detailed instructions for deploying the backend service on Replit.
+- **[Deployment Guide](docs/deployment.md):** Detailed instructions for deploying the backend service on Render.
 - **[Project Plan Gantt Chart](docs/gantt.html):** A visual representation of our project plan.
 - **[AI Toolkit](docs/AI_Toolkit.md):** Suggestions for leveraging AI to enhance the application's capabilities.
 
