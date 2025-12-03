@@ -8,7 +8,7 @@ import type {
   GenerateCoverLetterResponse,
   GenerateInterviewQuestionsRequest,
   GenerateInterviewQuestionsResponse,
-} from '../types/ai.types.js';
+} from '../types/ai.types.ts';
 
 export class LLMService {
   private client: Anthropic;
