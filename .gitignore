@@ -96,3 +96,6 @@ build/
 
 # Security audit reports
 snyk-report.json
+
+# Documentation artifacts
+docs/AuditAnalysis.pdf

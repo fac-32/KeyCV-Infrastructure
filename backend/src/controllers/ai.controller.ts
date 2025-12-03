@@ -1,11 +1,11 @@
 import type { Request, Response } from 'express';
-import { llmService } from '../services/llm.service.js';
+import { llmService } from '../services/llm.service.ts';
 import type {
   AnalyzeResumeRequest,
   RewriteBulletPointRequest,
   GenerateCoverLetterRequest,
   GenerateInterviewQuestionsRequest,
-} from '../types/ai.types.js';
+} from '../types/ai.types.ts';
 
 /**
  * Controller for Feature 1: Resume and Job Description Analysis

@@ -3,7 +3,7 @@ import type { Express, Request, Response } from 'express';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import aiRoutes from './routes/ai.routes.js';
+import aiRoutes from './routes/ai.routes.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

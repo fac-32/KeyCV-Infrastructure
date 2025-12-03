@@ -8,12 +8,13 @@ import type {
   GenerateCoverLetterResponse,
   GenerateInterviewQuestionsRequest,
   GenerateInterviewQuestionsResponse,
-} from '../types/ai.types.js';
+} from '../types/ai.types.ts';
 
 export class LLMService {
   private client: Anthropic;
   private model = 'claude-sonnet-4-5';
-
+  // Using Haiku as Sonnet is currently inaccessible for this account.
+  // The intended model is 'claude-3-5-sonnet-20240620'.
   constructor() {
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) {
