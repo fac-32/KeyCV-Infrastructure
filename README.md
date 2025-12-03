@@ -68,6 +68,8 @@ To start the backend server in development mode with live reloading:
 npm run dev
 ```
 
+The `npm run dev` command uses `nodemon` to watch for changes in your source files (`src/`). It will automatically recompile your TypeScript code and restart the server, loading environment variables from `.env.local`.
+
 > **Note:**</br>
 > The server will typically run on `http://localhost:3000`.
 
@@ -93,7 +95,7 @@ npm start
 
 These scripts are run from within the `backend/` directory.
 
-- `npm run dev`: Starts the backend server in development mode.
+- `npm run dev`: Starts the backend server in development mode with live reloading. It automatically recompiles TypeScript changes and loads environment variables from `.env.local`.
 - `npm run build`: Compiles TypeScript to JavaScript for the backend, creating production-ready files in the `dist/` directory.
 - `npm start`: Starts the compiled production backend server.
 - `npm run test`: Runs tests (currently no tests configured for the backend).
