@@ -1,0 +1,9 @@
+{
+  "watch": ["src"],
+  "ext": "ts,json",
+  "exec": "npm run build && node -r dotenv/config dist/index.js",
+  "env": {
+    "DOTENV_CONFIG_PATH": "./.env.local",
+    "DOTENV_CONFIG_OVERRIDE": "true"
+  }
+}
