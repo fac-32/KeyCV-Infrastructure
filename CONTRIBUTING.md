@@ -43,17 +43,17 @@ We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0
 
 ## 3. Deployment Process
 
-Our deployment to Replit is automated:
+Our deployment to Render is automated:
 
 1.**Merge to `main`:** All features must first be merged into the `main` branch.
-2.**Update `deploy` Branch:** To release the changes to production, the `deploy` branch is updated by merging `main` into it.
+2.**Update `deploy` Branch:** To release the changes to production, merge `main` into `deploy` (the branch Render watches).
     ```bash
     git checkout deploy
     git pull origin deploy
     git merge main
     git push origin deploy
     ```
-3.**Automatic Deployment:** Pushing to the `deploy` branch automatically triggers a new build and release on Replit.
+3.**Automatic Deployment:** Pushing to the `deploy` branch triggers a new build and release on Render.
 
 ## 4. Frontend & Backend Collaboration
 

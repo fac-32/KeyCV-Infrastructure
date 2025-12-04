@@ -12,10 +12,9 @@ import type {
 
 export class LLMService {
   private client: Anthropic;
+  private model = 'claude-sonnet-4-5';
   // Using Haiku as Sonnet is currently inaccessible for this account.
   // The intended model is 'claude-3-5-sonnet-20240620'.
-  private model = 'claude-3-haiku-20240307';
-
   constructor() {
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) {

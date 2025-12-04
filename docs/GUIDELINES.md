@@ -29,7 +29,7 @@ ___
 - Using a project management tool to define tickets and estimate tasks e.g. Github projects
 - Swagger and README documentation
 - At-least one form of testing
-- Your site must be deployed on a platform of your choice (Vercel / Replit / Netlify)
+- Your site must be deployed on a platform of your choice
 
 
 ## Approach
@@ -89,10 +89,10 @@ To ensure clarity and accountability, please assign yourself to a task before st
 | Task                                 | Assignee   | Status      | Notes / PR Link |
 |--------------------------------------|------------|-------------|-----------------|
 | Set up repositories Front & Backend  | `[Tania]`  | `[✅]`      |                                                                                       |
-| Deploy "Hello World" to Replit.      | `[Tania]`  | `[✅]`      | I decide to try Replit since never used beforehad lots off issue but we are live now✨|
+| Deploy "Hello World" to Render.      | `[Tania]`  | `[✅]`      | Deployed initial hello-world; migrating main service to Render for production.|
 | Configure testing frameworks.        | `[Rafi]`   | `[pending]` |                                                                                       |
-| Create GitHub Project.               | `[Mariana]`| `[✅]`      |                                                                                       |
-| GitHub Actions.                      | `[Mariana]`| `[✅]`      |                                                                                       |
+| Create GitHub Project.               | `[Marina]`| `[✅]`      |                                                                                       |
+| GitHub Actions.                      | `[Marina]`| `[✅]`      |                                                                                       |
 | **Frontend Components**              |            |             |                                                                                       |
 | `JobPostingInput`                    | `[Name]`   | `[pending]` |                                                                                       |
 | `ResumeUpload`                       | `[Name]`   | `[pending]` |                                                                                       |
