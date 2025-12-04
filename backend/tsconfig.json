@@ -32,7 +32,7 @@
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
 
-    // Recommended Options
+    // Recommended Options for tests enviroments
     "strict": true,
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
@@ -41,7 +41,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
 
-    "allowImportingTsExtensions": true,
-    "noEmit": true
   }
 }
+
