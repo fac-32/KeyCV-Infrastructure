@@ -4,7 +4,7 @@ import {
   rewriteBulletPoint,
   generateCoverLetter,
   generateInterviewQuestions,
-} from '../controllers/ai.controller.ts';
+} from '../controllers/ai.controller.js';
 
 const router = Router();
 

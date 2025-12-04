@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { llmService } from '../services/llm.service.ts';
+import { llmService } from '../services/llm.service.js';
 import type {
   AnalyzeResumeRequest,
   RewriteBulletPointRequest,
