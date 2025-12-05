@@ -1,10 +1,10 @@
-import { Router } from 'express';
+import { Router } from "express";
 import {
   analyzeResume,
   rewriteBulletPoint,
   generateCoverLetter,
   generateInterviewQuestions,
-} from '../controllers/ai.controller.ts';
+} from "../controllers/ai.controller.js";
 
 const router = Router();
 
@@ -13,27 +13,27 @@ const router = Router();
  * POST /api/ai/analyze-resume
  * Body: { resumeText: string, jobDescription: string }
  */
-router.post('/analyze-resume', analyzeResume);
+router.post("/analyze-resume", analyzeResume);
 
 /**
  * Feature 2: Resume Bullet Point Rewriter
  * POST /api/ai/rewrite-bullet
  * Body: { bulletPoint: string, jobDescription: string }
  */
-router.post('/rewrite-bullet', rewriteBulletPoint);
+router.post("/rewrite-bullet", rewriteBulletPoint);
 
 /**
  * Feature 3: Cover Letter Generation
  * POST /api/ai/generate-cover-letter
  * Body: { resumeText: string, jobDescription: string, companyName: string, jobTitle: string, keyPoints?: string[] }
  */
-router.post('/generate-cover-letter', generateCoverLetter);
+router.post("/generate-cover-letter", generateCoverLetter);
 
 /**
  * Feature 4: Interview Questions Generator
  * POST /api/ai/generate-interview-questions
  * Body: { jobDescription: string, jobTitle: string, companyName?: string }
  */
-router.post('/generate-interview-questions', generateInterviewQuestions);
+router.post("/generate-interview-questions", generateInterviewQuestions);
 
 export default router;

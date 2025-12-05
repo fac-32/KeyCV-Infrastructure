@@ -4,10 +4,10 @@ This repository contains the backend service for the KeyCV application, built wi
 
 ## Tech Stack
 
-* **Runtime:** Node.js
-* **Framework:** Express.js
-* **Language:** TypeScript
-* **Package Manager:** npm
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Language:** TypeScript
+- **Package Manager:** npm
 
 ## Setup Instructions
 
@@ -68,7 +68,7 @@ npm start
 
 ## Available Scripts
 
-* `npm run dev`: Starts the server in development mode.
-* `npm run build`: Compiles TypeScript to JavaScript.
-* `npm start`: Starts the compiled production server.
-* `npm test`: Runs tests (currently no tests configured).
+- `npm run dev`: Starts the server in development mode.
+- `npm run build`: Compiles TypeScript to JavaScript.
+- `npm start`: Starts the compiled production server.
+- `npm test`: Runs tests (currently no tests configured).
