@@ -3,6 +3,7 @@ import type { Express, Request, Response } from "express";
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import multer from "multer";
 
 import aiRoutes from "./routes/ai.routes.js";
 
@@ -11,6 +12,8 @@ const __dirname = path.dirname(__filename);
 
 const app: Express = express();
 const port = process.env.PORT ?? 3000;
+
+const upload = multer({ limits: { fileSize: 10 * 1024 * 1024 } });
 
 // Middleware
 app.use(express.json({ limit: "10mb" })); // Parse JSON bodies with increased limit for resumes
@@ -28,8 +31,26 @@ app.get("/health", (_req: Request, res: Response) => {
   res.status(200).json({ status: "ok" });
 });
 
+// app.get("/api", (_req: Request, res: Response) => {
+//   res.send("Hello from backend");
+// });
+
 // AI Toolkit API routes
 app.use("/api/ai", aiRoutes);
+
+app.post("/submit-info", upload.single('cv_file'), (_req: Request, res: Response) => {
+  console.log("fields:", _req.body);
+  console.log("file:", (_req as any).file)
+
+  res.status(201).send({ status: "received" });
+});
+
+app.post("/api", (_req: Request, res: Response) => {
+  const result = _req.body;
+  console.log(result);
+
+  res.status(201).send({ status: "received" });
+});
 
 app.listen(Number(port), "0.0.0.0", () => {
   console.log(`Server is running at http://localhost:${port}`);
