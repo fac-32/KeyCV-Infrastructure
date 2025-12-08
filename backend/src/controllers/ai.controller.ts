@@ -1,7 +1,6 @@
-import type { Request, Response } from "express";
+import type { Request, Response, Express } from "express";
 import { llmService } from "../services/llm.service.js";
 import type {
-  AnalyzeResumeRequest,
   RewriteBulletPointRequest,
   GenerateCoverLetterRequest,
   GenerateInterviewQuestionsRequest,
@@ -11,26 +10,48 @@ import type {
  * Controller for Feature 1: Resume and Job Description Analysis
  */
 export const analyzeResume = async (
-  req: Request<object, object, AnalyzeResumeRequest>,
+  req: Request,
   res: Response,
 ): Promise<void> => {
   try {
-    const { resumeText, jobDescription } = req.body;
+    const jobDescription =
+      typeof req.body?.jobDescription === "string"
+        ? req.body.jobDescription.trim()
+        : "";
+    const hasFile = Boolean(req.file);
 
-    // Validation
-    if (!resumeText || !jobDescription) {
+    if (!jobDescription) {
+      res
+        .status(400)
+        .json({ error: "Missing required field: job description (job)" });
+      return;
+    }
+
+    if (!hasFile) {
       res.status(400).json({
-        error: "Missing required fields: resumeText and jobDescription",
+        error: "Missing resume file: provide cv as multipart file field",
       });
       return;
     }
 
-    const result = await llmService.analyzeResume({
-      resumeText,
-      jobDescription,
-    });
+    const resumeText = await parseResumeFile(req.file as Express.Multer.File);
 
-    res.status(200).json(result);
+    if (!resumeText) {
+      res.status(501).json({
+        error: "Resume parsing not implemented yet",
+        message: "Add parser to extract text from PDF/DOC/DOCX buffer.",
+      });
+      return;
+    }
+
+    // TODO: when parsing is ready, call the LLM with real resume text.
+    // const result = await llmService.analyzeResume({ resumeText, jobDescription });
+    // res.status(200).json(result);
+    res.status(501).json({
+      error: "Analysis pending",
+      message:
+        "Resume parsing stub in place; wire to LLM after parser is added.",
+    });
   } catch (error) {
     console.error("Error in analyzeResume:", error);
     res.status(500).json({
@@ -38,6 +59,11 @@ export const analyzeResume = async (
       message: error instanceof Error ? error.message : "Unknown error",
     });
   }
+};
+
+const parseResumeFile = async (_file: Express.Multer.File): Promise<string> => {
+  // TODO: implement parsing of PDF/DOC/DOCX from req.file.buffer
+  return "";
 };
 
 /**

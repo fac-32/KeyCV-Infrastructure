@@ -13,7 +13,11 @@ export const upload = multer({
     fileSize: 5 * 1024 * 1024, // 5 MB
     files: 1,
   },
-  fileFilter: (req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
+  fileFilter: (
+    req: Request,
+    file: Express.Multer.File,
+    cb: FileFilterCallback,
+  ) => {
     if (allowedMimes.has(file.mimetype)) {
       cb(null, true);
       return;
