@@ -14,7 +14,7 @@ const router = Router();
  * POST /api/ai/analyze-resume
  * Body: { resumeText: string, jobDescription: string }
  */
-router.post("/analyze-resume", upload.single("cv"), analyzeResume);
+router.post("/analyze-resume", upload.single("file"), analyzeResume);
 
 /**
  * Feature 2: Resume Bullet Point Rewriter
