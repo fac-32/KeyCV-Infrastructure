@@ -17,6 +17,9 @@ const allowedOrigin =
   process.env.CORS_ORIGIN ??
   "http://localhost:5173";
 
+// AI Toolkit API routes
+app.use("/api/ai", aiRoutes);
+
 // Middleware
 app.use(express.json({ limit: "10mb" })); // Parse JSON bodies with increased limit for resumes
 app.use(express.urlencoded({ extended: true, limit: "10mb" })); // Parse URL-encoded bodies
@@ -41,9 +44,6 @@ app.get("/", (_req: Request, res: Response) => {
 app.get("/health", (_req: Request, res: Response) => {
   res.status(200).json({ status: "ok" });
 });
-
-// AI Toolkit API routes
-app.use("/api/ai", aiRoutes);
 
 app.listen(Number(port), "0.0.0.0", () => {
   console.log(`Server is running at http://localhost:${port}`);
