@@ -1,8 +1,9 @@
 import "dotenv/config";
 import type { Express, Request, Response } from "express";
 import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import cors from "cors";
 
 import aiRoutes from "./routes/ai.routes.js";
 
@@ -11,6 +12,16 @@ const __dirname = path.dirname(__filename);
 
 const app: Express = express();
 const port = process.env.PORT ?? 3000;
+const allowedOrigin = process.env.FRONTEND_ORIGIN ?? "http://localhost:5173";
+
+app.use(
+  cors({
+    origin: allowedOrigin,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
 
 // AI Toolkit API routes
 app.use("/api/ai", aiRoutes);
