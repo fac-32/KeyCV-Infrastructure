@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import aiRoutes from "./routes/ai.routes.js";
+import supabaseRoutes from "./routes/supabase.routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,6 +23,9 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" })); // Parse URL-enc
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
+// Supabase routes
+app.use("/api/supabase", supabaseRoutes);
+
 // Routes
 app.get("/", (_req: Request, res: Response) => {
   res.send("KeyCV Backend API - AI Toolkit Enabled");
@@ -30,6 +34,7 @@ app.get("/", (_req: Request, res: Response) => {
 app.get("/health", (_req: Request, res: Response) => {
   res.status(200).json({ status: "ok" });
 });
+
 
 app.listen(Number(port), "0.0.0.0", () => {
   console.log(`Server is running at http://localhost:${port}`);
