@@ -12,17 +12,7 @@ const __dirname = path.dirname(__filename);
 
 const app: Express = express();
 const port = process.env.PORT ?? 3000;
-const allowedOrigin =
-  process.env.FRONTEND_ORIGIN ??
-  process.env.CORS_ORIGIN ??
-  "http://localhost:5173";
-
-// AI Toolkit API routes
-app.use("/api/ai", aiRoutes);
-
-// Middleware
-app.use(express.json({ limit: "10mb" })); // Parse JSON bodies with increased limit for resumes
-app.use(express.urlencoded({ extended: true, limit: "10mb" })); // Parse URL-encoded bodies
+const allowedOrigin = process.env.FRONTEND_ORIGIN ?? "http://localhost:5173";
 
 app.use(
   cors({
@@ -32,6 +22,13 @@ app.use(
     credentials: true,
   }),
 );
+
+// AI Toolkit API routes
+app.use("/api/ai", aiRoutes);
+
+// Middleware
+app.use(express.json({ limit: "10mb" })); // Parse JSON bodies with increased limit for resumes
+app.use(express.urlencoded({ extended: true, limit: "10mb" })); // Parse URL-encoded bodies
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));

@@ -16,8 +16,8 @@ export const analyzeResume = async (
 ): Promise<void> => {
   try {
     const jobDescription =
-      typeof req.body?.jobDescription === "string"
-        ? req.body.jobDescription.trim()
+      typeof req.body?.job_description === "string"
+        ? req.body.job_description.trim()
         : "";
     const hasFile = Boolean(req.file);
 
