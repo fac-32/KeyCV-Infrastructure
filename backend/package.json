@@ -16,7 +16,6 @@
   "type": "module",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.0",
-    "@supabase/supabase-js": "^2.87.1",
     "@types/multer": "^2.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
