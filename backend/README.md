@@ -1,6 +1,7 @@
 # KeyCV Backend
 
-This repository contains the backend service for the KeyCV application, built with Node.js, Express, and TypeScript.
+This repository contains the backend service for the KeyCV application, built with Node.js, Express,
+and TypeScript.
 
 ## Tech Stack
 
