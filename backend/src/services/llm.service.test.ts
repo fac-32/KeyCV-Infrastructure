@@ -13,7 +13,7 @@ const { mockCreate } = vi.hoisted(() => {
 
 vi.mock("@anthropic-ai/sdk", () => {
   return {
-    default: vi.fn(function() {
+    default: vi.fn(function () {
       return {
         messages: {
           create: mockCreate,
