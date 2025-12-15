@@ -1,4 +1,4 @@
-import { type Request } from "express";
+import { type Request, type Express } from "express";
 import multer, { type FileFilterCallback } from "multer";
 
 const allowedMimes = new Set<string>([

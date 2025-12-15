@@ -96,7 +96,12 @@ describe("AI Controller", () => {
         jobDescription: "Looking for TypeScript developer",
       });
       expect(statusMock).toHaveBeenCalledWith(200);
-      expect(jsonMock).toHaveBeenCalledWith(mockAnalysis);
+      const expectedResponse = {
+        resumeText: "John Doe\nSoftware Engineer",
+        jobDescription: "Looking for TypeScript developer",
+        feedback: mockAnalysis,
+      };
+      expect(jsonMock).toHaveBeenCalledWith(expectedResponse);
     });
 
     it("should handle DOCX files", async () => {

@@ -1,11 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": "."  // Allow root-level files
+    "rootDir": "."
   },
   "include": [
     "src/**/*",
-    "*.ts",  // Include root-level .ts files
+    "src/**/*.test.ts",
+    "*.ts",
     "*.mts",
     "*.cts"
   ],
