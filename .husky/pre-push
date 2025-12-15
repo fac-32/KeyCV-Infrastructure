@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run type checking before push
+# TODO: Re-enable tests after Vitest setup is complete
+cd backend && npm run type-check
+# cd backend && npm run type-check && npm test
