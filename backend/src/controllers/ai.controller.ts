@@ -51,7 +51,9 @@ export const analyzeResume = async (
       jobDescription,
     });
 
-    res.status(200).json({ resumeText: cleanResumeText, jobDescription, feedback: result });
+    res
+      .status(200)
+      .json({ resumeText: cleanResumeText, jobDescription, feedback: result });
   } catch (error) {
     console.error("Error in analyzeResume:", error);
     res.status(500).json({
