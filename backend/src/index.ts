@@ -6,7 +6,6 @@ import { fileURLToPath } from "node:url";
 import cors from "cors";
 
 import aiRoutes from "./routes/ai.routes.js";
-import supabaseRoutes from "./routes/supabase.routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,9 +32,6 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" })); // Parse URL-enc
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
-
-// Supabase routes
-app.use("/api/supabase", supabaseRoutes);
 
 // Routes
 app.get("/", (_req: Request, res: Response) => {
