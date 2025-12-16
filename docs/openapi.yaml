@@ -1,0 +1,267 @@
+openapi: 3.0.3
+info:
+  title: KeyCV AI Toolkit API
+  description: |-
+    This API provides AI-powered tools to assist with job applications. 
+    It is the backend service for the KeyCV application. The endpoints can analyze resumes, rewrite bullet points, generate cover letters, and create interview questions.
+  version: 1.0.0
+  contact:
+    name: KeyCV Team
+    url: https://github.com/fac-32/KeyCV-Infrastructure
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+  - url: https://keycv.onrender.com
+    description: Production server
+tags:
+  - name: AI Toolkit
+    description: Endpoints for leveraging AI to enhance job application materials.
+paths:
+  /api/ai/analyze-resume:
+    post:
+      tags:
+        - AI Toolkit
+      summary: Analyze Resume Against Job Description
+      description: Upload a resume file (PDF, DOC, DOCX) and a job description to receive an analysis, including a match score and keyword comparison.
+      operationId: analyzeResume
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - job_description
+                - cv_file
+              properties:
+                job_description:
+                  type: string
+                  description: The full text of the job description.
+                cv_file:
+                  type: string
+                  format: binary
+                  description: The user's resume file.
+      responses:
+        '200':
+          description: Analysis successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  resumeText:
+                    type: string
+                    description: The text extracted from the resume file.
+                  jobDescription:
+                    type: string
+                    description: The job description provided.
+                  feedback:
+                    $ref: '#/components/schemas/AnalyzeResumeResponse'
+        '400':
+          description: Bad request due to missing fields or an unreadable/unsupported file.
+        '500':
+          description: Internal server error, likely an issue with the AI service.
+
+# Further Steps to be implemented
+
+  /api/ai/rewrite-bullet:
+    post:
+      tags:
+        - AI Toolkit
+      summary: Rewrite Resume Bullet Point
+      description: Rewrites a resume bullet point to be more impactful and results-oriented, tailored to a specific job description.
+      operationId: rewriteBulletPoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RewriteBulletPointRequest'
+      responses:
+        '200':
+          description: Bullet point successfully rewritten.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewriteBulletPointResponse'
+        '400':
+          description: Bad request due to missing fields.
+        '500':
+          description: Internal server error.
+
+  /api/ai/generate-cover-letter:
+    post:
+      tags:
+        - AI Toolkit
+      summary: Generate Cover Letter
+      description: Generates a tailored, professional cover letter based on a provided resume, job description, and other details.
+      operationId: generateCoverLetter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateCoverLetterRequest'
+      responses:
+        '200':
+          description: Cover letter successfully generated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateCoverLetterResponse'
+        '400':
+          description: Bad request due to missing fields.
+        '500':
+          description: Internal server error.
+
+  /api/ai/generate-interview-questions:
+    post:
+      tags:
+        - AI Toolkit
+      summary: Generate Interview Questions
+      description: Generates a list of likely technical and behavioral interview questions based on a job description.
+      operationId: generateInterviewQuestions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateInterviewQuestionsRequest'
+      responses:
+        '200':
+          description: Interview questions successfully generated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateInterviewQuestionsResponse'
+        '400':
+          description: Bad request due to missing fields.
+        '500':
+          description: Internal server error.
+
+components:
+  schemas:
+    # Request Schemas
+    RewriteBulletPointRequest:
+      type: object
+      required:
+        - bulletPoint
+        - jobDescription
+      properties:
+        bulletPoint:
+          type: string
+          description: The resume bullet point to rewrite.
+          example: "Worked on the company website."
+        jobDescription:
+          type: string
+          description: The target job description for tailoring the rewrite.
+          example: "Seeking a frontend developer with React experience to improve user engagement."
+    GenerateCoverLetterRequest:
+      type: object
+      required:
+        - resumeText
+        - jobDescription
+        - companyName
+        - jobTitle
+      properties:
+        resumeText:
+          type: string
+          description: The full text of the user's resume.
+          example: "Experienced software developer..."
+        jobDescription:
+          type: string
+          description: The full text of the target job description.
+          example: "We are looking for a Senior Software Engineer..."
+        companyName:
+          type: string
+          description: The name of the company to address the letter to.
+          example: "Tech Solutions Inc."
+        jobTitle:
+          type: string
+          description: The job title being applied for.
+          example: "Senior Software Engineer"
+        keyPoints:
+          type: array
+          items:
+            type: string
+          description: Optional list of key points or skills to emphasize in the letter.
+          example: ["Experience with large-scale data migration", "Led a team of 5 engineers"]
+    GenerateInterviewQuestionsRequest:
+      type: object
+      required:
+        - jobDescription
+        - jobTitle
+      properties:
+        jobDescription:
+          type: string
+          description: The job description to base the questions on.
+          example: "Full Stack Developer with experience in React, Node.js, and AWS."
+        jobTitle:
+          type: string
+          description: The title of the job.
+          example: "Full Stack Developer"
+        companyName:
+          type: string
+          description: Optional company name to provide context.
+          example: "Cloud Innovations"
+
+    # Response Schemas
+    AnalyzeResumeResponse:
+      type: object
+      properties:
+        matchScore:
+          type: number
+          format: integer
+          description: A score from 0-100 indicating how well the resume matches the job description.
+          example: 85
+        presentKeywords:
+          type: array
+          items:
+            type: string
+          description: Keywords from the job description found in the resume.
+          example: ["React", "TypeScript", "Node.js"]
+        missingKeywords:
+          type: array
+          items:
+            type: string
+          description: Important keywords from the job description not found in the resume.
+          example: ["GraphQL", "AWS", "Docker"]
+        recommendations:
+          type: array
+          items:
+            type: string
+          description: Actionable suggestions for improving the resume.
+          example: ["Consider adding projects that utilized AWS services.", "Highlight your experience with containerization if you have any."]
+    RewriteBulletPointResponse:
+      type: object
+      properties:
+        originalBulletPoint:
+          type: string
+          example: "Worked on the website."
+        rewrittenBulletPoint:
+          type: string
+          example: "Engineered a new responsive user dashboard using React, resulting in a 15% increase in user engagement."
+        improvements:
+          type: array
+          items:
+            type: string
+          example: ["Used a strong action verb", "Added a quantifiable result", "Mentioned specific technology (React)"]
+    GenerateCoverLetterResponse:
+      type: object
+      properties:
+        coverLetter:
+          type: string
+          example: "Dear Hiring Manager,\n\nI am writing to express my keen interest in the Senior Software Engineer position at Tech Solutions Inc. ...\n\nSincerely,\n[Your Name]"
+    GenerateInterviewQuestionsResponse:
+      type: object
+      properties:
+        technicalQuestions:
+          type: array
+          items:
+            type: string
+          example: ["How would you optimize a slow database query?", "Explain the difference between REST and GraphQL."]
+        behavioralQuestions:
+          type: array
+          items:
+            type: string
+          example: ["Tell me about a time you had to resolve a conflict within your team.", "Describe a challenging project and how you handled it."]
