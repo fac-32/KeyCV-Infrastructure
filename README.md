@@ -1,10 +1,13 @@
 # 🔑 KeyCV
 
-This repository houses the backend service for the KeyCV application, designed to automate and improve parts of the job application process. The frontend (if in a separate repository) would consume this backend's APIs.
+This repository houses the backend service for the KeyCV application,
+designed to automate and improve parts of the job application process.
+The frontend (if in a separate repository) would consume this backend's APIs.
 
 ## Backend Service Overview
 
-The backend service is built with Node.js, Express, and TypeScript. Its primary responsibilities include processing job application data and providing API endpoints for the frontend.
+The backend service is built with Node.js, Express, and TypeScript. Its primary responsibilities
+include processing job application data and providing API endpoints for the frontend.
 
 ## Tech Stack (Backend)
 
@@ -44,7 +47,8 @@ npm install
 
 ### 4. Environment Variables
 
-Environment variables are crucial for configuring our application. We use a `.env.example` file as a template to define all necessary variables.
+Environment variables are crucial for configuring our application.
+We use a `.env.example` file as a template to define all necessary variables.
 
 For local development, create a `.env.local` file in the `backend/` directory:
 
@@ -55,7 +59,8 @@ cp .env.example .env.local
 Then, open `.env.local` and fill in the required environment variables specific to your local setup.
 
 > 🚨 **Warning:** </br>
-> **Ensure this file is never committed to Git, as it contains sensitive information.** (It is already ignored by `.gitignore`). On Render, add these variables via the dashboard.
+> **Ensure this file is never committed to Git, as it contains sensitive information.**
+(It is already ignored by `.gitignore`). On Render, add these variables via the dashboard.
 
 ### 5. Run the Development Server
 
@@ -65,7 +70,9 @@ To start the backend server in development mode with live reloading:
 npm run dev
 ```
 
-The `npm run dev` command uses `nodemon` to watch for changes in your source files (`src/`). It will automatically recompile your TypeScript code and restart the server, loading environment variables from `.env.local`.
+The `npm run dev` command uses `nodemon` to watch for changes in your source files (`src/`). It will
+automatically recompile your TypeScript code and restart the server, loading environment variables
+from `.env.local`.
 
 > **Note:**</br>
 > The server will typically run on `http://localhost:3000`.
@@ -92,12 +99,126 @@ npm start
 
 These scripts are run from within the `backend/` directory.
 
-- `npm run dev`: Starts the backend server in development mode with live reloading. It automatically recompiles TypeScript changes and loads environment variables from `.env.local`.
-- `npm run build`: Compiles TypeScript to JavaScript for the backend, creating production-ready files in the `dist/` directory.
-- `npm start`: Starts the compiled production backend server.
-- `npm run test`: Runs tests (currently no tests configured for the backend).
+- `npm run dev`: Starts the backend server in development mode with live reloading.
+It automatically recompiles TypeScript changes and loads environment variables from `.env.local`.
+- `npm run build`: Compiles TypeScript to JavaScript for the backend, creating production-ready
+files in the `dist/` directory.
 
-For contribution guidelines, including our Git branching model and commit message conventions, please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) guide.
+- `npm start`: Starts the compiled production backend server.
+- `npm test`: Runs the complete test suite using Vitest.
+- `npm run test:watch`: Runs tests in watch mode for development.
+- `npm run test:ui`: Opens the Vitest UI for interactive testing.
+- `npm run test:coverage`: Generates test coverage reports.
+
+For contribution guidelines, including our Git branching model and commit message conventions,
+please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) guide.
+
+## Testing
+
+We use **Vitest** as our testing framework, providing a fast and modern testing experience
+with TypeScript support.
+
+### Test Structure
+
+Our test suite is organized into three main categories:
+
+1. **Unit Tests** (`src/**/*.test.ts`)
+   - Service layer tests (LLM service, business logic)
+   - Utility function tests
+   - Individual component testing
+
+2. **Integration Tests** (`src/controllers/*.test.ts`)
+   - API endpoint testing
+   - Controller logic with mocked services
+   - Request/response validation
+
+3. **Basic Tests** (`src/__tests__/*.test.ts`)
+   - Smoke tests
+   - Environment validation
+   - Configuration checks
+
+### Running Tests
+
+```bash
+# Run all tests once
+npm test
+
+# Run tests in watch mode (re-runs on file changes)
+npm run test:watch
+
+# Open interactive UI for test exploration
+npm run test:ui
+
+# Generate coverage report
+npm run test:coverage
+```
+
+### Test Configuration
+
+- **Framework:** Vitest v4.0.15
+- **Environment:** Node.js
+- **Coverage Tool:** v8
+- **Mocking:** vi (Vitest's built-in mocking utilities)
+- **Globals:** Enabled (no need to import describe, it, expect)
+
+### Coverage Thresholds
+
+We maintain minimum coverage thresholds:
+
+- **Lines:** 70%
+- **Functions:** 70%
+- **Branches:** 70%
+- **Statements:** 70%
+
+### Test Results
+
+![Test Results](./docs/vitest_passed.png)
+
+> All 28 tests passing across 3 test suites*
+
+### Writing Tests
+
+When adding new features, please include corresponding tests:
+
+```typescript
+import { describe, it, expect, beforeEach, vi } from "vitest";
+
+describe("FeatureName", () => {
+  beforeEach(() => {
+    // Setup code
+  });
+
+  it("should do something expected", () => {
+    // Arrange
+    const input = "test";
+
+    // Act
+    const result = yourFunction(input);
+
+    // Assert
+    expect(result).toBe("expected");
+  });
+});
+```
+
+### Mocking External Dependencies
+
+We mock external services (like the Anthropic API) to ensure fast, reliable tests:
+
+```typescript
+// Mock the Anthropic SDK
+const { mockCreate } = vi.hoisted(() => ({
+  mockCreate: vi.fn(),
+}));
+
+vi.mock("@anthropic-ai/sdk", () => ({
+  default: vi.fn(function() {
+    return {
+      messages: { create: mockCreate },
+    };
+  }),
+}));
+```
 
 ## Deployment
 
@@ -117,10 +238,12 @@ You can access the live application after Render finishes provisioning and expos
 
 ## Project Documentation
 
-All detailed project documentation has been moved to the `docs/` directory to keep the root directory clean.
+All detailed project documentation has been moved to the `docs/` directory keeping root directory clean.
 
-- **[Project Guidelines](docs/GUIDELINES.md):** High-level project goals, tech stack, and project management approach.
-- **[Deployment Guide](docs/deployment.md):** Detailed instructions for deploying the backend service on Render.
+- **[Project Guidelines](docs/GUIDELINES.md):** High-level project goals, tech stack, and project
+management approach.
+- **[Deployment Guide](docs/deployment.md):** Detailed instructions for deploying the backend service
+at Render.
 - **[Project Plan Gantt Chart](docs/gantt.html):** A visual representation of our project plan.
 - **[AI Toolkit](docs/AI_Toolkit.md):** Suggestions for leveraging AI to enhance the application's capabilities.
 
