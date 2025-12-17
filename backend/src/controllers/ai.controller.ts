@@ -1,6 +1,7 @@
 import type { Request, Response, Express } from "express";
 import JSZip from "jszip";
 import { llmService } from "../services/llm.service.js";
+import { PDFParse } from "pdf-parse";
 import type {
   RewriteBulletPointRequest,
   GenerateCoverLetterRequest,
@@ -51,9 +52,12 @@ export const analyzeResume = async (
       jobDescription,
     });
 
-    res
-      .status(200)
-      .json({ resumeText: cleanResumeText, jobDescription, feedback: result });
+    res.status(200).json({
+      resumeText: cleanResumeText,
+      jobDescription,
+      feedback: result,
+      cvName: req.file?.originalname.split(".")[0],
+    });
   } catch (error) {
     console.error("Error in analyzeResume:", error);
     res.status(500).json({
@@ -69,7 +73,7 @@ const parseResumeFile = async (file: Express.Multer.File): Promise<string> => {
   const buffer = file.buffer;
 
   if (mime.includes("pdf") || name.endsWith(".pdf")) {
-    return extractPdfText(buffer);
+    return await extractPdfText(buffer);
   }
 
   if (mime.includes("wordprocessingml") || name.endsWith(".docx")) {
@@ -83,34 +87,21 @@ const parseResumeFile = async (file: Express.Multer.File): Promise<string> => {
   return buffer.toString("utf8");
 };
 
-const extractPdfText = (buffer: Buffer): string => {
-  const pdfString = buffer.toString("latin1");
-  const matches = pdfString.match(/\(([^()\\]*(?:\\.[^()\\]*)*)\)/g);
+const extractPdfText = async (buffer: Buffer): Promise<string> => {
+  let parser: PDFParse | undefined;
 
-  if (!matches) {
-    return pdfString.replace(/[^\x20-\x7E\r\n]+/g, " ").replace(/\s+/g, " ");
+  try {
+    parser = new PDFParse({ data: buffer });
+    const result = await parser.getText();
+    const text = result.text || "";
+
+    return text.replace(/\s+/g, " ").trim();
+  } catch (error) {
+    console.error("Failed to extract PDF text:", error);
+    return "";
+  } finally {
+    await parser?.destroy();
   }
-
-  const cleaned = matches
-    .map((m) => m.slice(1, -1))
-    .map((text) =>
-      text
-        .replace(/\\([nrtbf()\\])/g, (_match, p1) => {
-          if (p1 === "n") return "\n";
-          if (p1 === "r") return "\r";
-          if (p1 === "t") return "\t";
-          if (p1 === "b") return "\b";
-          if (p1 === "f") return "\f";
-          return p1;
-        })
-        .replace(/\\(\d{1,3})/g, (_m, octal) => {
-          const code = parseInt(octal, 8);
-          return Number.isFinite(code) ? String.fromCharCode(code) : "";
-        }),
-    )
-    .join(" ");
-
-  return cleaned.replace(/\s+/g, " ");
 };
 
 const extractDocBinaryText = (buffer: Buffer): string => {
