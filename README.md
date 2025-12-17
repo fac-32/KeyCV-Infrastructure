@@ -153,6 +153,8 @@ npm run test:ui
 npm run test:coverage
 ```
 
+> All test runs from backend
+
 ### Test Configuration
 
 - **Framework:** Vitest v4.0.15

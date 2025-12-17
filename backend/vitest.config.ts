@@ -32,6 +32,7 @@ export default defineConfig({
 
     // Test file patterns
     include: ["src/**/*.{test,spec}.ts"],
+    exclude: ["node_modules/**", "dist/**", "**/*.d.ts"],
 
     // Setup files
     setupFiles: ["./src/__tests__/setup.ts"],
