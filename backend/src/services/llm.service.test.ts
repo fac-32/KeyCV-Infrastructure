@@ -1,6 +1,4 @@
-/// <reference types="vitest/globals" />
-// import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { vi } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import Anthropic from "@anthropic-ai/sdk";
 import { LLMService } from "./llm.service.js";
 
