@@ -174,13 +174,13 @@ We maintain minimum coverage thresholds:
 
 ### Test Results
 
-![Test Results](docs/vitest_passed.png)
+![Test Results](docs/vitest_passed.jpg)
 
 > All 28 tests passing across 3 test suites*
 
 ### Test UI
 
-![Vitest UI](docs/vitest-test-ui.png)
+![Vitest UI](docs/vitest-test-ui.jpg)
 
 ### Writing Tests
 
